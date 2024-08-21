@@ -1,11 +1,13 @@
 function minecraft_backup {
-ssh -i ~/.ssh/my_aws/my_minecraft_aws_key.pem ec2-user@ec2-11-11-11-111.us-west-2.compute.amazonaws.com -t '\
+ssh -i ~/.ssh/my_aws/kiko_minecraft_aws_key.pem ec2-user@ec2-11-11-11-111.us-west-2.compute.amazonaws.com -t '\
 cd /opt/minecraft/server && \
 sudo ./stop && \
-zip -r world world && \
-sudo reboot'
+zip -r world world'
 
-scp -i ~/.ssh/my_aws/my_minecraft_aws_key.pem ec2-user@ec2-11-11-l1-111.us-west-2.compute.amazonaws.com:/opt/minecraft/server/world.zip ~/projects/minecraft-java-server-setup/backups/world.zip
+scp -i ~/.ssh/my_aws/kiko_minecraft_aws_key.pem ec2-user@ec2-11-11-11-111.us-west-2.compute.amazonaws.com:/opt/minecraft/server/world.zip ~/projects/minecraft-java-server-setup/backups/world.zip
+
+ssh -i ~/.ssh/my_aws/kiko_minecraft_aws_key.pem ec2-user@ec2-11-11-11-111.us-west-2.compute.amazonaws.com -t '\
+sudo reboot'
 }
 
 function minecraft_restore {
